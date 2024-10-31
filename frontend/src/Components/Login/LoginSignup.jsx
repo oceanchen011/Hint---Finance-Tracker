@@ -13,6 +13,8 @@ const LoginSignup = () => {
     const [userName, setUserName] = useState('oceanchen')
     const [email, setEmail] = useState('oceanchen999@gmail.com')
     const [password, setPassword] = useState('Testing123$')
+    const [statusMessage, setStatusMessage] = useState("");
+    const [inputs, setInputs] = useState({});
 
     const [values, setValues] = useState({
         name: 'oceanchen', 
@@ -24,20 +26,31 @@ const LoginSignup = () => {
     const handleInput = (event) => {
         setValues(prev => ({
             ...prev,
-            [event.target.name]: event.target.value // Use event.target.value directly
+            [event.target.name]: event.target.value 
         }));
     }
     
     const handleSubmit = (event) => {
-        event.preventDefault(); 
-        setErrors(Validation(values)); 
-        if(errors.name === "" && errors.email === "" && errors.password === ""){
-            axios.post('http://localhost:3001/', values)
-            .then(res => console.log(res))
-            .catch(err => console.log(err)); 
-        }
-    }
+        event.preventDefault();
+        
+        const validationErrors = Validation(values);
+        setErrors(validationErrors);
 
+        if (Object.values(validationErrors).every(error => error === "")) {
+            axios.post('http://localhost:3300/api', values)
+                .then(res => {
+                    setStatusMessage("Data successfully sent to the backend!");
+                    console.log("Response:", res);
+                })
+                .catch(err => {
+                    setStatusMessage("Failed to send data to the backend.");
+                    console.error("Error:", err);
+                });
+        } else {
+            setStatusMessage("Please correct the errors before submitting.");
+            console.log("Validation Errors:", validationErrors);
+        }
+    };
 
     return (
         <div className='container'>
@@ -46,27 +59,50 @@ const LoginSignup = () => {
                 <div className="underline"></div>
             </div>
             <div className="submit-container">
-                <button className={action==="Login"?"submit gray":"submit"} onClick={()=>{setAction("Sign Up")}}> Sign Up </button>
-                <button className={action==="Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("Login")}}> Login </button>
+                <button className={action === "Login" ? "submit gray" : "submit"} onClick={() => { setAction("Sign Up") }}> Sign Up </button>
+                <button className={action === "Sign Up" ? "submit gray" : "submit"} onClick={() => { setAction("Login") }}> Login </button>
             </div>
-            <div className="inputs">
+            <form onSubmit={handleSubmit} className="inputs">
                 <div className="input">
-                    <CgProfile className='profile-img'/>
-                    <input type="text" placeholder='Username' onChange={handleInput} value={userName}/>
+                    <CgProfile className='profile-img' />
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder='Username'
+                        onChange={handleInput}
+                        value={values.name}
+                    />
                 </div>
-                {action==="Login"?<div></div>: <div className="input">
-                    <MdOutlineEmail className='profile-img'/>
-                    <input type="text" placeholder='Email' onChange={handleInput} value={email}/>
-                    {errors.email && <span className='text-danger'>{errors.email}</span>}
-                </div>}
+                {action === "Login" ? null : (
+                    <div className="input">
+                        <MdOutlineEmail className='profile-img' />
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder='Email'
+                            onChange={handleInput}
+                            value={values.email}
+                        />
+                        {errors.email && <span className='text-danger'>{errors.email}</span>}
+                    </div>
+                )}
                 <div className="input">
-                    <FaLock className='profile-img'/>
-                    <input type="text" placeholder='Password' onChange={handleInput} value={password}/>
+                    <FaLock className='profile-img' />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder='Password'
+                        onChange={handleInput}
+                        value={values.password}
+                    />
                     {errors.password && <span className='text-danger'>{errors.password}</span>}
                 </div>
-                <a className='forgot-password' href='/'> Forgot Password </a>
-            </div>
-            <button className="submit-form" onClick={handleSubmit}> {action} </button>
+                <a className='forgot-password' href='/HomeScreen'> Forgot Password </a>
+                <button type="submit" className="submit-form"> {action} </button>
+            </form>
+
+            {/* Display the status message */}
+            {statusMessage && <div className='status-message'>{statusMessage}</div>}
         </div>
     )
 }
