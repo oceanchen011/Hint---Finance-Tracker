@@ -4,7 +4,7 @@
 
 .sidebar{ 
     margin: 0;
-    width: 200px;
+    width: 180px;
     height: 100vh; 
     background-color: grey;
     position: fixed;
@@ -57,3 +57,10 @@
     color: #f1f1f1;
 }
 
+.accounts {
+    
+    margin-left: 200px; /* Aligns it next to the sidebar without moving the sidebar */
+    width: calc(100% - 200px); /* Adjust width to fill the remaining space */
+    height: 500px;
+    background-color: lightgrey;
+}

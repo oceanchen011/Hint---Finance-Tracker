@@ -11,7 +11,7 @@ const HomeScreen = () => {
                     <a href="#transactions" className="menu-item"> Transactions </a>
                     <a href="#creditscore" className="menu-item"> Credit Score </a>
                     <a href="#Bills" className="menu-item"> Bills </a>
-                    <a href="#Budgets" className="menu-item"> Budgets </a>
+                    <a href="/Budget" className="menu-item"> Budgets </a>
                     <a href="#Goals" className="menu-item"> Goals </a>
                     <a href="#Bills" className="menu-item"> Bills </a>
                     <a href="#Trends" className="menu-item"> Trends </a>
@@ -26,10 +26,10 @@ const HomeScreen = () => {
                     <br/>
                     <a href="/LoginSignup" className="menu-item"> Logout </a>
                 </div>
-
-                <div className='accounts'> 
-
-                </div>
+            </div>
+            
+            <div className="accounts">
+                {/* Main content goes here */}
             </div>
         </div>
     )
