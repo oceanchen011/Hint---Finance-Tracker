@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BudgetContext } from "./contexts/BudgetContext"
+import { BudgetsProvider } from "./contexts/BudgetContext"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BudgetContext>
+    <BudgetsProvider>
       <App />
-    </BudgetContext>
+    </BudgetsProvider>
   </React.StrictMode>
 );
 
