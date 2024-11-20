@@ -2,14 +2,17 @@
     margin: 0;
 }
 
-.sidebar{ 
-    margin: 0;
-    width: 180px;
-    height: 100vh; 
-    background-color: grey;
-    position: fixed;
+.sidebar {
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0;
+    left: 0;
+    width: 200px; /* Set a consistent width */
+    height: 100vh; /* Full viewport height */
+    background-color: gray;
+    padding: 20px; /* Add padding for spacing */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    z-index: 100; /* Ensure it stays above the content */
 }
-
 .logo{
     display: flex;
     padding: 15px;
@@ -58,9 +61,7 @@
 }
 
 .accounts {
-    
-    margin-left: 200px; /* Aligns it next to the sidebar without moving the sidebar */
-    width: calc(100% - 200px); /* Adjust width to fill the remaining space */
-    height: 500px;
+    width: calc(100% - 180px); /* Adjust width to fill the remaining space */
+    height: 100vh;
     background-color: lightgrey;
 }

@@ -27,10 +27,6 @@ const Sidebar = () => {
                     <a href="/" className="menu-item"> Logout </a>
                 </div>
             </div>
-            
-            <div className="accounts">
-                {/* Main content goes here */}
-            </div>
         </div>
     )
 }

@@ -1,0 +1,7 @@
+/* Reset margin and padding for the entire page */
+body{
+    margin-left: 220px; /* Removes any margin from the body */
+    width: 100%; /* Sets width of the body to full width */
+    height: 100%; /* Ensures the body height spans full viewport */
+}
+
