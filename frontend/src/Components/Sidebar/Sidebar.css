@@ -1,67 +1,97 @@
-.body{
-    margin: 0;
-}
-
 .sidebar {
-    position: fixed; /* Fix the sidebar to the left */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 200px; /* Set a consistent width */
-    height: 100vh; /* Full viewport height */
+    width: 15vw; /* Default width */
+    max-width: 150px; /* Limit for larger screens */
+    min-width: 80px; /* Minimum width before switching to icons */
+    height: 100vh;
     background-color: gray;
-    padding: 20px; /* Add padding for spacing */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
-    z-index: 100; /* Ensure it stays above the content */
-}
-.logo{
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: width 0.3s;
     display: flex;
-    padding: 15px;
-    font-size: 30px;
+    flex-direction: column;
+    align-items: center; /* Center logo and items */
+}
+
+.logo {
+    font-size: 1.5rem;
     font-weight: bold;
-    color: white; 
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: font-size 0.3s; /* Shrink smoothly */
 }
 
 .menu-container {
-    margin-top: 10px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items inside the sidebar */
+    width: 100%; /* Use full width */
 }
 
 .menu-item {
-    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    font-size: 1rem;
+    color: white;
     text-decoration: none;
-    font-size: 18px;
-    color: black;
-    display: block;
-    border: 1px solid transparent; /* Initial transparent border */
-    border-radius: 5px; /* Optional, for rounded corners */
-    box-sizing: border-box; /* Includes padding/border in width calculation */
+    border-radius: 5px;
+    width: 100%; /* Full width */
+    transition: all 0.3s; /* Smoothly resize */
+    box-sizing: border-box;
+}
+
+.menu-item .icon {
+    font-size: 1.5rem; /* Icon size */
+    margin-right: 10px; /* Space between icon and text */
+    transition: font-size 0.3s, margin 0.3s;
+}
+
+.menu-item .text {
+    display: inline;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    transition: opacity 0.3s, width 0.3s;
 }
 
 .menu-item:hover {
-    background-color: #333; /* Highlight color on hover */
-    color: #f1f1f1;
-    border-color: #333; /* Same as background color for consistent look */
-    width: 100%;
+    background-color: #333;
 }
 
-.bar{
-    color: darkgrey; 
+@media (max-width: 768px) {
+    .sidebar {
+        width: 25vw; /* Shrink sidebar */
+        min-width: 80px; /* Minimum width */
+    }
+
+    .menu-item {
+        justify-content: center; /* Center items */
+    }
+
+    .menu-item .text {
+        display: none; /* Hide text on smaller screens */
+    }
 }
 
-.sidebar a {
-    padding: 5px 15px; /* Reduced padding here as well */
-    text-decoration: none;
-    font-size: 25px;
-    display: block;
-    color: black;
+@media (max-width: 480px) {
+    .sidebar {
+        width: 40px; /* Narrow sidebar for small screens */
+    }
 
-}
+    .menu-item {
+        justify-content: center; /* Center icons only */
+    }
 
-.sidebar a:hover {
-    color: #f1f1f1;
-}
+    .menu-item .text {
+        display: none; /* Ensure text is hidden */
+    }
 
-.accounts {
-    width: calc(100% - 180px); /* Adjust width to fill the remaining space */
-    height: 100vh;
-    background-color: lightgrey;
+    .menu-item .icon {
+        margin-right: 0; /* Remove spacing for text */
+    }
 }

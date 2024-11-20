@@ -7,7 +7,7 @@ const Sidebar = () => {
             <div className="sidebar"> 
                 <div className="logo">Hint</div>   
                 <div className="menu-container">
-                    <a href="#overview" className="menu-item">Overview</a>
+                    <a href="/HomeScreen" className="menu-item">Overview</a>
                     <a href="#transactions" className="menu-item"> Transactions </a>
                     <a href="#creditscore" className="menu-item"> Credit Score </a>
                     <a href="#Bills" className="menu-item"> Bills </a>

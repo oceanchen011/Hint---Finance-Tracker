@@ -28,8 +28,14 @@ function Budget() {
             <Sidebar />
             <Container 
                 className="my-4" 
-                style={{ width: "1400px", height: "800px", padding: "20px", margin: "0 auto" }} /* Inline style to remove extra space */
-            > 
+                style={{ 
+                    width: "1400px", // Adjust to leave space for sidebar
+                    marginLeft: "6vw", // Offset content to the right of the sidebar
+                    height: "800px", 
+                    padding: "20px", 
+                    margin: "0 auto" 
+                }} 
+            >
                 <Stack direction="horizontal" gap="2" className="mb-4"> 
                     <h1 className="me-auto" style={{ margin: 0 }}>Budgets</h1>
                     <Button variant="primary" onClick={() => setShowAddBudgetModal(true)}>
