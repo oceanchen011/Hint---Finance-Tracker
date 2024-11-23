@@ -5,6 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { FaLock } from "react-icons/fa";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 const LoginSignup = () => {
 
@@ -15,6 +16,7 @@ const LoginSignup = () => {
     const [password, setPassword] = useState('Testing123$')
     const [statusMessage, setStatusMessage] = useState("");
     const [inputs, setInputs] = useState({});
+    const navigate = useNavigate(); 
 
     const [values, setValues] = useState({
         name: 'oceanchen', 
@@ -45,6 +47,7 @@ const LoginSignup = () => {
                 .catch(err => {
                     setStatusMessage("Failed to send data to the backend.");
                     console.error("Error:", err);
+                    navigate('/HomeScreen');
                 });
         } else {
             setStatusMessage("Please correct the errors before submitting.");
