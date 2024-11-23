@@ -1,9 +1,12 @@
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap"
 import { currencyFormatter } from "../../utils"
+import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../../contexts/BudgetContext"
 
 
-export default function BudgetCard({ name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpenseClick}) {
+export default function BudgetCard({ name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpenseClick, budgetId }) {
     const classNames = [] 
+    const { deleteBudget, budgets } = useBudgets() 
+    const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? { name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID } : budgets.find(b => b.id === budgetId)
     if (amount > max) {
         classNames.push("bg-danger", "bg-opacity-10")
     }else if (gray){
@@ -31,6 +34,13 @@ export default function BudgetCard({ name, amount, max, gray, hideButtons, onAdd
                     <Stack direction="horizontal" gap="2" className="mt-4">
                         <Button variant="outline-primary" className="ms-auto" onClick={onAddExpenseClick}> Add Expense </Button>
                         <Button onClick={onViewExpenseClick} variant="outline-secondary"> View Expenses </Button>
+                        <Button onClick={() => {
+                            if(!budgetId){
+                                console.error("cannot delete budget not found", budgetId)
+                                return
+                            }
+                            deleteBudget(budget)
+                        }} size="sm" varient="outline-danger" color='red'>&times;</Button>
                     </Stack>
                 )}
             </Card.Body>

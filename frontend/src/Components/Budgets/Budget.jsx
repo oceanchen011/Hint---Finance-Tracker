@@ -11,12 +11,12 @@ import "../../Components/Budgets/Budget.css"
 import TotalBudgetCard from "../TotalBudgetCard"
 import ViewExpensesModal from "../ViewExpensesModal"
 
-function Budget() {
+function Budget({ budgetId }) {
     const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
     const [showAddExpenseModal, setShowAddExpenseModal] = useState(false) 
     const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState() 
     const [viewExpensesModalBudgetId, setviewExpensesModalBudgetId] = useState()
-    const { budgets, getBudgetExpenses } = useBudgets() 
+    const { budgets, getBudgetExpenses, deleteBudget } = useBudgets() 
 
     function openAddExpenseModal(budgetId) {
         setShowAddExpenseModal(true)
@@ -61,6 +61,7 @@ function Budget() {
                                 name={budget.name} 
                                 amount={amount} 
                                 max={budget.max} 
+                                budgetId = {budget.id}
                                 onAddExpenseClick={() => openAddExpenseModal(budget.id)} 
                                 onViewExpenseClick={() => setviewExpensesModalBudgetId(budget.id)} 
                             />
