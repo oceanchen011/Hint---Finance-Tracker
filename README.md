@@ -1,3 +1,5 @@
 # Hint---Finance-Tracker
 
-# Login UI complete
+git clone https://github.com/oceanchen011/Hint---Finance-Tracker.git \
+npm install \
+npm start
