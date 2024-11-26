@@ -11,8 +11,8 @@ export function useBudgets() {
 }
 
 export const BudgetsProvider = ({ children }) => {
-    const [expenses, setExpenses] = useState([]); // Ensure this is empty by default
-    const [budgets, setBudgets] = useState([]);  // Ensure this is empty by default
+    const [expenses, setExpenses] = useState([]); 
+    const [budgets, setBudgets] = useState([]);  
     
 
     function getBudgetExpenses(budgetId){
